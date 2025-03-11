@@ -13,7 +13,7 @@
 #include "../utils/imagelib.h"
 #endif
 
-// negativo
+// funcao de deixar negativo
 image neg (image img) {
     int w = img->nc;
     int h = img->nr;
