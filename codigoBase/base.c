@@ -15,8 +15,12 @@
 
 
 image neg (image img) {
-    for (int i = 0; i < img->nr * img->nc; i++)
-        img->px[i] = img->ml - img->px[i];
+    int w = img->nc;
+    int h = img->nr;
+    int max = img->ml;
+    int *pixels = img->px;
+    for (int i = 0; i < h * w; i++)
+        img->px[i] = max - pixels[i];
     return img;
 }
 
