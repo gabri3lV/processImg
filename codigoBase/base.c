@@ -24,6 +24,22 @@ image neg (image img) {
     return img;
 }
 
+// transformacao pontual
+image pontual(image img) {
+    int w = img->nc;
+    int h = img->nr;
+    int max = img->ml;
+    int *pixels = img->px;
+    int T[max+1];
+
+    for (int i = 0; i <= max; i++) 
+        T[i] = (i > 100 && i < 150) ? 190 : i;
+
+    for (int i = 0; i < h * w; i++)
+        pixels[i] = T[pixels[i]];
+
+    return img;
+}
 void msg(char *s)
 {
     printf("\nNegative image");
@@ -50,7 +66,7 @@ int main(int argc, char *argv[])
     //-- read image
     In = img_get(nameIn, GRAY);
     //-- transformation
-    Out = neg(In);
+    Out = pontual(In);
     //-- save image
     img_put(Out, nameOut, GRAY);
 
