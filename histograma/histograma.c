@@ -38,7 +38,7 @@
      return Out;
  }
 
- void histograma(image img) {
+ image histograma(image img) {
     int w = img->nc;
     int h = img->nr;
     int max = img->ml;
@@ -61,7 +61,7 @@
 
     // vetor de transformação das intensidades
     for (int i = 0; i < max + 1; i++)
-        sk[i] = (int)pr[i] * max;
+        T[i] = (int)(pr[i] * max);
 
     // varredura final
     for (int i = 0; i < w * h; i++)
@@ -93,13 +93,13 @@
      //-- read image
      In = img_get(nameIn, GRAY);
      //-- transformation
-     Out = equaliza(In);
+     Out = histograma(In);
      //-- save image
      img_put(Out, nameOut, GRAY);
  
      sprintf(cmd, "%s %s &", VIEW, nameOut);
      system(cmd);
      img_free(In);
-     img_free(Out);
+     // img_free(Out);
      return 0;
  }
